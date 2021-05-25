@@ -1,0 +1,17 @@
+{
+  "name": "michi",
+  "version": "0.0.1",
+  "description": "Multi tasking template bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "node index.js"
+  },
+  "author": "Alvaro Arpal Alonso",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "ffmpeg": "0.0.4",
+    "ytdl-core": "^4.8.0"
+  }
+}
