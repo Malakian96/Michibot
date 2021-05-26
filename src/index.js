@@ -10,8 +10,18 @@ client.once('ready', () => {
 
 client.on('message', msg => {
     const { content } = msg;
+    const command = content.slice(1, content.length);
     if(content.startsWith(prefix)){
-        msg.channel.send(" https://cdn.discordapp.com/attachments/329017785705562116/783852284068364299/image0.gif");
+        switch (command){
+            case 'hola': {
+                msg.channel.send('https://cdn.discordapp.com/attachments/329017785705562116/783852284068364299/image0.gif');
+            }
+        }
+    
+
+
+       
+        
     }
 })
 
