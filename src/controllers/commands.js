@@ -34,7 +34,6 @@ const textCommands = async (msg) => {
 
 const newLogged = new Set();
 
-
 const voiceCommands = async (newState, Oldstate) => {
   const { client } = newState;
   let oldUser = newLogged.has(newState.id);
