@@ -31,9 +31,17 @@ const textCommands = async (msg) => {
     commands.help(msg)
   }
 }
-const voiceCommands = async ({client, id}, state) => {
-  if (id == 846869334093070426) return;
-  if (state.channelID) await autoCommands.__join__(client)
+
+const newLogged = new Set();
+
+
+const voiceCommands = async (newState, Oldstate) => {
+  const { client } = newState;
+  let oldUser = newLogged.has(newState.id);
+  newLogged.add(newState.id)
+  if (newState.id == 846869334093070426) return;
+  if (Oldstate.channelID == null) newLogged.delete(newState.id);
+  if (!oldUser) await autoCommands.__join__(client)
 }
 
 module.exports = {
