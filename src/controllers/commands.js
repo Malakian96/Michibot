@@ -28,19 +28,20 @@ const textCommands = async (msg) => {
   if(content.startsWith(prefix) && commands[command]){
     await  commands[command](msg, args, client);    
   }else if (content.startsWith(prefix) && !commands[command]){
+    msg.reply('Ese michitruco no me suena, te dejo los que me se')
     commands.help(msg)
   }
 }
 
 const newLogged = new Set();
 
-const voiceCommands = async (newState, Oldstate) => {
-  const { client } = newState;
+const voiceCommands = async (oldState, newState) => {
+  if (newState.id == 846869334093070426) return;
+  const { client, channelID } = newState;
   let oldUser = newLogged.has(newState.id);
   newLogged.add(newState.id)
-  if (newState.id == 846869334093070426) return;
-  if (Oldstate.channelID == null) newLogged.delete(newState.id);
-  if (!oldUser) await autoCommands.__join__(client)
+  if (newState.channelID == null) newLogged.delete(newState.id);
+  if (!oldUser) await autoCommands.__join__(client, channelID);
 }
 
 module.exports = {

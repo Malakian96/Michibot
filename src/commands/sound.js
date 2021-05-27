@@ -7,9 +7,9 @@ let voiceChannel;
 let textChannel;
 let fileData;
 
-module.exports = async (bot) => {
-  voiceChannel = bot.channels.cache.get('804400482784378924');
-  textChannel = bot.channels.cache.get('819612282199867432');
+module.exports = async (bot, channel) => {
+  voiceChannel = bot.channels.cache.get(channel);
+  textChannel = bot.channels.cache.get('783440033687273482');
   if (!voiceChannel) return console.error('The voice channel does not exist!\n(Have you looked at your configuration?)');
 
   voiceChannel.join().then(connection => {
@@ -25,23 +25,12 @@ module.exports = async (bot) => {
     }
 
     dispatcher = connection.play('src/assets/' + audio);
-    textChannel.send('https://cdn.discordapp.com/attachments/329017785705562116/783852284068364299/image0.gif');
+    const statusEmbed = new Discord.MessageEmbed()
+    .addField('Bienvenido', `Espero que hayas tenido un buen dia, ahora sientate y disfruta de este temita con los panas`)
+    .setColor('#0066ff')
 
-    dispatcher.on('start', () => {
-        console.log('Now playing ' + audio);
-        fileData = "Now Playing: " + audio;
-        fs.writeFile("now-playing.txt", fileData, (err) => { 
-        if (err) 
-        console.log(err); 
-        }); 
-        const statusEmbed = new Discord.MessageEmbed()
-        .addField('Now Playing', `${audio}`)
-        .setColor('#0066ff')
-  
-        let statusChannel = bot.channels.cache.get("847134567139901450");
-        if (!statusChannel) return console.error('The status channel does not exist! Skipping.');
-        statusChannel.send(statusEmbed);
-      });
+    textChannel.send(statusEmbed);
+
       dispatcher.on('finish', () => {
         dispatcher.destroy();
         voiceChannel.leave();

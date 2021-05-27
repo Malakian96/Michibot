@@ -7,7 +7,7 @@ const commandGuide = {
     },
     body: {
         title: 'UWU',
-        text: '!help - Te muestro este mensaje\n!hello - Saludito pa ti\n!gif [busqueda] - Te pongo un gif bien chulo :3\n!play [cancion] - Te canto una de las canciones que me se',
+        text: '!help - Te muestro este mensaje\n!hello - Saludito pa ti\n!gif [busqueda] - Te pongo un gif bien chulo :3\n!play [cancion] - Te canto una de las canciones que me se\n!yt play | skip | stop | up | down [Link, busqueda]',
     },
     footer: {
         title: 'Extras',
