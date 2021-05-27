@@ -2,11 +2,13 @@ const { prefix } = require("../../config.json");
 const hello = require("../commands/hello");
 const gif = require("../commands/gif");
 const sound = require("../commands/sound");
+const soundText = require("../commands/soundText");
     
 const commands = {
     hello : hello,
     gif : gif,
-    join : sound,
+    __join__ : sound,
+    play : soundText
 };
 
 const textCommands = async (msg) => {
@@ -20,8 +22,9 @@ const textCommands = async (msg) => {
     await  commands[command](msg, args, client);    
   }
 }
-const voiceCommands = async ({client}) => {
-  await commands.join(client)
+const voiceCommands = async ({client, id}, state) => {
+  if (id == 846869334093070426) return;
+  if (state.channelID) await commands.__join__(client)
 }
 
 module.exports = {

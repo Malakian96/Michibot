@@ -4,10 +4,12 @@ const Discord = require('discord.js');
 let dispatcher;
 let audio;
 let voiceChannel;
+let textChannel;
 let fileData;
 
 module.exports = async (bot) => {
-  voiceChannel = bot.channels.cache.get('844325825843167245');
+  voiceChannel = bot.channels.cache.get('804400482784378924');
+  textChannel = bot.channels.cache.get('819612282199867432');
   if (!voiceChannel) return console.error('The voice channel does not exist!\n(Have you looked at your configuration?)');
 
   voiceChannel.join().then(connection => {
@@ -23,6 +25,7 @@ module.exports = async (bot) => {
     }
 
     dispatcher = connection.play('src/assets/' + audio);
+    textChannel.send('https://cdn.discordapp.com/attachments/329017785705562116/783852284068364299/image0.gif');
 
     dispatcher.on('start', () => {
         console.log('Now playing ' + audio);
