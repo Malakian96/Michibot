@@ -3,13 +3,18 @@ const hello = require("../commands/hello");
 const gif = require("../commands/gif");
 const sound = require("../commands/sound");
 const soundText = require("../commands/soundText");
+const help = require("../commands/help");
     
 const commands = {
     hello : hello,
     gif : gif,
-    __join__ : sound,
-    play : soundText
+    play : soundText,
+    help: help,
 };
+
+const autoCommands = {
+  __join__: sound,
+}
 
 const textCommands = async (msg) => {
   if (msg.author.bot) return;
@@ -20,11 +25,13 @@ const textCommands = async (msg) => {
 
   if(content.startsWith(prefix) && commands[command]){
     await  commands[command](msg, args, client);    
+  }else if (content.startsWith(prefix) && !commands[command]){
+    commands.help(msg)
   }
 }
 const voiceCommands = async ({client, id}, state) => {
   if (id == 846869334093070426) return;
-  if (state.channelID) await commands.__join__(client)
+  if (state.channelID) await autoCommands.__join__(client)
 }
 
 module.exports = {
