@@ -4,12 +4,14 @@ const gif = require("../commands/gif");
 const sound = require("../commands/sound");
 const soundText = require("../commands/soundText");
 const help = require("../commands/help");
+const yt = require("../commands/yt");
     
 const commands = {
     hello : hello,
     gif : gif,
     play : soundText,
     help: help,
+    yt: yt,
 };
 
 const autoCommands = {
