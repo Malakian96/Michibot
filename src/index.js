@@ -19,6 +19,6 @@ client.once('ready', () => {
 
 
 client.on('message', textCommands);
-client.on('voiceStateUpdate', voiceCommands);
+//client.on('voiceStateUpdate', voiceCommands);
 
 client.login(process.env.TOKEN);
