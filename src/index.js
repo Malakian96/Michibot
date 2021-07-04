@@ -1,29 +1,24 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const { prefix } = require("../config.json");
+const { textCommands, voiceCommands } = require("./controllers/commands");
+
 require('dotenv').config();
 
-const { prefix } = require("../config.json");
-
 client.once('ready', () => {
-    console.log('saludos :D')
+    client.user.setPresence({
+        activity: {
+          name: `El michibot | ${prefix}help`,
+          type: ' '
+        },
+        status: 'online',
+      }).then(presence => {
+          console.log(`Activity set to "${presence.activities[0].name}"`);
+      }).catch(console.error);
 })
 
-client.on('message', msg => {
-    const { content } = msg;
-    const command = content.slice(1, content.length);
-    if(content.startsWith(prefix)){
-        switch (command){
-            case 'hola': {
-                msg.channel.send('https://cdn.discordapp.com/attachments/329017785705562116/783852284068364299/image0.gif');
-            }
-        }
-    
 
-
-       
-        
-    }
-})
-
+client.on('message', textCommands);
+//client.on('voiceStateUpdate', voiceCommands);
 
 client.login(process.env.TOKEN);
