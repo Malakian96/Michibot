@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const ytdl = require("ytdl-core");
+//const ytdl = require('ytdl-core-discord');
 var YouTube = require('youtube-node');
 const queue = new Map();
 require('dotenv').config();
@@ -24,6 +25,13 @@ const play = (guild, song) => {
       play(guild, serverQueue.songs[0]);
     })
     .on("error", error => console.error(error));
+  /*const dispatcher = serverQueue.connection
+    .play(ytdl(song.url))
+    .on("finish", () => {
+      serverQueue.songs.shift();
+      play(guild, serverQueue.songs[0]);
+    })
+    .on("error", error => console.error(error));*/
   dispatcher.setVolumeLogarithmic(serverQueue.volume / 3);
   serverQueue.textChannel.send(`Disfruta de tremendo temardo: **${song.title}**`);
 }
